@@ -1,0 +1,38 @@
+import java.util.ArrayList;
+import java.util.Random;
+
+public class Jogador {
+	String Nome;
+	Boolean CpuPlayer;
+	ArrayList <Carta> Cartas;
+	Carta CartaRodada;
+	Boolean VencedorDaRodada;
+	
+	public Jogador(String nome, boolean cpu) {
+		this.Nome= nome;
+		this.CpuPlayer = cpu;
+		this.VencedorDaRodada = false;
+		this.Cartas = new ArrayList <Carta>();
+	}
+	
+	public Carta PegarCarta() {
+		this.CartaRodada = Cartas.get(0);
+                if (!this.CpuPlayer)
+                    this.CartaRodada.imprimeCarta();
+		this.Cartas.remove(0);
+		return this.CartaRodada;
+	}
+	
+	public int EscolherAtributo(){
+		
+		if (this.CpuPlayer){
+                    Random r = new Random();
+		    return r.nextInt((5 - 1) + 1) + 1; 
+		}else {
+			InteracaoUser r = new InteracaoUser();
+			return r.solicitaAtributoUser();
+		}
+		
+	}
+	
+}
