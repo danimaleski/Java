@@ -1,2 +1,2 @@
 # Java
-Programação Orientada a Objetos
+Trabalho feito em Java, na matéria de Programação Orientada a Objetos
