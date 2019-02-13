@@ -1,0 +1,123 @@
+import java.util.List;
+
+public class Carta {
+	String Nome; 
+	int IdNumero; 
+	char IdLetra;
+ 	boolean SuperTrunfo; 
+	int Ano;
+	double IMDB;
+	long Bilheteria;
+	int Duracao;
+	int NumeroDePremios;
+	
+	public Carta(String Nome, int Numero, char Letra, boolean SuperTrunfo, 
+			int Ano, float IMDB, long Bilheteria, int Duracao, int NumeroDePremios) 
+	{
+		this.Nome = Nome;
+		this.IdNumero= Numero; 
+		this.IdLetra = Letra;
+		this.SuperTrunfo = SuperTrunfo; 
+		this.Ano = Ano;
+		this.IMDB = IMDB;
+		this.Bilheteria = Bilheteria;
+		this.Duracao = Duracao;
+		this.NumeroDePremios = NumeroDePremios;
+	}
+	
+	public void imprimeCarta() {
+		System.out.println("Nome da carta: " + this.Nome);
+		System.out.println("Codigo: " + this.IdNumero + this.IdLetra);
+		if (this.SuperTrunfo)
+			System.out.println("Carta SUPER TRUNFO.");
+		else {
+			System.out.println("1- Ano: " + this.Ano);
+			System.out.println("2- Nota IMDB: " + this.IMDB);
+			System.out.println("3- Bilheteria: " + this.Bilheteria +" USD");
+			System.out.println("4- Duracao: " + this.Duracao +" Min.");
+			System.out.println("5- Numero de premia��es: " + this.NumeroDePremios);
+		}
+	}
+	
+	// Dado uma lista de Cartas compara o atributo escolhido, 
+	//caso o atributo n�o seja definido usara por default a compara��o por premios.
+	public Carta DefineCartaVencedora(List<Carta> Cartas, int AtrEscolhido){
+		
+		Carta cartaVencedora = Cartas.get(0);
+		int cartasA = 0;
+		boolean empate=false;
+
+		// verifica se existe alguma carta supertrunfo.
+		for (int i = 1; i<Cartas.size() ; i++){
+			if (Cartas.get(i).SuperTrunfo){
+				cartaVencedora = Cartas.get(i);
+				for (int j = 0; j<Cartas.size() ; j++){
+					if (Cartas.get(j).IdLetra == 'A'){
+						cartaVencedora = Cartas.get(j);
+						cartasA++;
+					}
+				}
+				if (cartasA == 0 || cartasA == 1)
+					return cartaVencedora;
+				else 
+					return null;
+			}
+		}
+		
+		for (int i = 1; i<Cartas.size() ; i++)
+		{
+			switch (AtrEscolhido){
+			case 1:
+				if(cartaVencedora.Ano < Cartas.get(i).Ano){
+					cartaVencedora = Cartas.get(i);
+					empate=false;
+				}
+				else 
+					if (cartaVencedora.Ano == Cartas.get(i).Ano)
+						empate = true;
+				break;
+			case 2:
+				if(cartaVencedora.IMDB < Cartas.get(i).IMDB){
+					cartaVencedora = Cartas.get(i);
+					empate=false;
+				}
+				else 
+					if (cartaVencedora.IMDB == Cartas.get(i).IMDB)
+						empate = true;
+				break;
+			case 3:
+				if(cartaVencedora.Bilheteria < Cartas.get(i).Bilheteria){
+					cartaVencedora = Cartas.get(i);
+					empate=false;
+				}
+				else 
+					if (cartaVencedora.Bilheteria == Cartas.get(i).Bilheteria)
+						empate = true;
+				break;
+			case 4:
+				if(cartaVencedora.Duracao < Cartas.get(i).Duracao){
+					cartaVencedora = Cartas.get(i);
+					empate=false;
+				}
+				else 
+					if (cartaVencedora.Duracao == Cartas.get(i).Duracao)
+						empate = true;
+				break;
+			default:
+				if(cartaVencedora.NumeroDePremios < Cartas.get(i).NumeroDePremios){
+					cartaVencedora = Cartas.get(i);
+					empate=false;
+				}
+				else 
+					if (cartaVencedora.NumeroDePremios == Cartas.get(i).NumeroDePremios)
+						empate = true;
+				break;
+			}
+			
+		}
+		if (!empate)
+			return cartaVencedora;
+		else 
+			return null;
+	}
+}
