@@ -1,0 +1,47 @@
+import java.util.Collections;
+import java.util.ArrayList;
+
+public class Baralho {
+	ArrayList<Carta> Cartas;
+
+	public Baralho(){
+		this.Cartas = new ArrayList<Carta>();
+		this.Cartas.add( new Carta("O Lobo de Wall Street", 1,'C', false, 2013, 8.2f, 392000000, 180, 38));
+                this.Cartas.add( new Carta("O Círculo", 2,'E', false, 2017,  5.3f,40600000, 110, 1));
+                this.Cartas.add( new Carta("Django Livre", 1,'B', false, 2012, 8.4f ,425000000, 165, 38));
+                this.Cartas.add( new Carta("Bastardos Inglórios", 1,'A', false, 2009, 8.3f ,321500000, 153, 129));
+                this.Cartas.add( new Carta("Sem Limites", 2,'C', false, 2011, 7.4f ,161800000, 105, 2));
+                this.Cartas.add( new Carta("Transcedence", 2,'D', false, 2014, 6.3f ,103000000, 119, 3));
+                this.Cartas.add( new Carta("Simplesmente Acontece", 2,'H', false, 2014, 7.2f ,25570000, 102, 0));
+                this.Cartas.add( new Carta("A Teoria de Tudo", 1,'D', false, 2014, 7.7f ,123700000, 123, 24));
+                this.Cartas.add( new Carta("Diário de um Paixão", 2,'F', false, 2004, 7.9f ,115600000, 123, 12));
+                this.Cartas.add( new Carta("Á Prova de Fogo", 2,'G', false, 2008, 6.6f ,33470000, 180, 0));
+                this.Cartas.add( new Carta("Moana – Um Mar de Aventuras", 2,'B', false, 2016, 7.6f, 643300000, 107, 18));
+                this.Cartas.add( new Carta("Frozen – Uma Aventura Congelante", 2,'A', false, 2013, 7.5f ,1276000000, 102, 77));
+                this.Cartas.add( new Carta("Tudo e Todas as Coisas", 3,'B', false, 2017, 6.4f ,61600000, 96, 1));
+                this.Cartas.add( new Carta("A Culpa é das Estrelas", 3,'A', false, 2014, 7.8f ,307200000, 126, 21));
+                this.Cartas.add( new Carta("Se eu ficar", 3,'C', false, 2014, 6.4f ,78900000, 107, 3));
+                this.Cartas.add( new Carta("Encontro Explosivo", 3,'D', false, 2010, 6.3f ,261900000, 109, 0));
+                this.Cartas.add( new Carta("O Terminal", 3,'E', false, 2004, 7.3f ,219400000, 128, 5));
+                this.Cartas.add( new Carta("Tudo e Todas as Coisas", 1,'E', false, 2017, 7.5f , 700400000, 135, 0));
+                this.Cartas.add( new Carta("A Origem", 4,'A', false, 2010, 8.8f ,828300000, 188, 152));
+                this.Cartas.add( new Carta("Animais Fantásticos e onde habitam", 1,'F', false, 2016, 7.4f, 812500000, 133, 0));
+                this.Cartas.add( new Carta("Sempre ao seu lado", 1,'G', false, 2009, 8.1f ,46700000, 93, 0));
+                this.Cartas.add( new Carta("Até o Último Homem", 1,'H', false, 2016, 8.2f, 175300000, 139, 46));
+                this.Cartas.add( new Carta("O Quarto de Jack", 3,'F', false, 2015, 8.2f, 35300000, 118, 103));
+                this.Cartas.add( new Carta("A Viagem de Chihiro", 3,'G', false, 2001, 8.6f, 228000000, 125, 56));
+                this.Cartas.add( new Carta("Questão de Tempo", 3,'H', false, 2013, 7.8f, 87100000, 123, 3));
+                this.Cartas.add( new Carta("Operação Big Hero", 4,'B', false, 2014, 7.8f, 657800000, 102, 16));
+                this.Cartas.add( new Carta("12 Anos de Escravidão", 4,'C', false, 2013, 8.1f, 187700000, 134, 235));
+                this.Cartas.add( new Carta("Psicose", 4,'D', false, 1960, 8.5f, 34700000, 109, 5));
+                this.Cartas.add( new Carta("Divertida Mente", 4,'E', false, 2015, 8.2f, 857600000, 95, 93));
+                this.Cartas.add( new Carta("Mulan", 4,'F', false, 1998, 7.6f, 304300000, 88, 17));
+                this.Cartas.add( new Carta("A Bela e a Fera", 4,'G', true, 2017, 7.3f, 1264000000, 129, 11));
+                this.Cartas.add( new Carta("Como eu era antes de Você", 4,'H', false, 2016, 7.4f, 208300000, 106, 6));     
+	}
+	
+	public void Embaralhar(){
+		Collections.shuffle(this.Cartas);
+	}
+
+}
