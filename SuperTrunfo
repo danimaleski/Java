@@ -1,0 +1,101 @@
+import java.util.ArrayList;
+
+public class SuperTrunfo {
+	ArrayList<Jogador> Jogadores;
+	ArrayList <Carta> CartasRodada;
+	Baralho Baralho;
+	int AtributoEscolhido;
+        boolean venceuRodada;
+	
+	public SuperTrunfo(){
+		this.Jogadores = new ArrayList<Jogador>();
+		this.CartasRodada = new ArrayList<Carta>();
+	}
+	
+	public void DistribuirCartas(){
+		int cartasPorJogador = this.Baralho.Cartas.size() / this.Jogadores.size();
+		System.out.println("Cada jogador possui " + cartasPorJogador + " cartas.");		
+		for (int i = 0; i< cartasPorJogador ; i++){
+			for (int j =0; j < this.Jogadores.size(); j++ ){
+				this.Jogadores.get(j).Cartas.add(this.Baralho.Cartas.get(0));
+				this.Baralho.Cartas.remove(0);
+			}
+		}
+		if (this.Baralho.Cartas.size()> 0){
+			System.out.println("Sobraram " + this.Baralho.Cartas.size() + " cartas, ser�o disputadas na primeira rodada.");
+			this.CartasRodada = this.Baralho.Cartas;
+			this.Baralho.Cartas.clear();
+		}
+	}
+	
+	public void CriarJogo(){
+		this.Jogadores.add(new Jogador("Player1", false));
+		this.Jogadores.add(new Jogador("Player2", true));
+		this.Baralho = new Baralho();
+		this.Baralho.Embaralhar();
+		this.DistribuirCartas();
+	}
+	
+	public void VencedorEscolheAtributo(){
+            
+            for (int i= 0; i < this.Jogadores.size(); i++){
+                if (this.Jogadores.get(i).VencedorDaRodada)
+                   this.AtributoEscolhido = this.Jogadores.get(i).EscolherAtributo();
+                   System.out.println("Atreibuto escolhido: " + this.AtributoEscolhido);
+            } 
+        }
+        
+	//INICAR UMA RODADA.
+	public void IniciarJogo(){
+            int count=0;
+		while (!this.verificarFimdoJogo()){
+                  this.CartasRodada.add(this.Jogadores.get(0).PegarCarta());
+		  this.CartasRodada.add(this.Jogadores.get(1).PegarCarta());
+                  if (count==0)
+                      this.AtributoEscolhido = this.Jogadores.get(0).EscolherAtributo();
+                  else 
+                      this.VencedorEscolheAtributo();                                    
+		  this.DefinirVencedorDaRodada();
+		  this.VerficarJogadoresSemCartas();
+		  this.verificarFimdoJogo();
+                  InteracaoUser.clearConsole();
+		}
+		  
+	}
+
+	public void DefinirVencedorDaRodada(){
+		Carta cartaVencedora =this.CartasRodada.get(0).DefineCartaVencedora(this.CartasRodada, this.AtributoEscolhido);
+		if (cartaVencedora == null){
+			System.out.println("N�o h� vencedor da rodada.");
+		} else {
+			for(int i = 0; i < this.Jogadores.size(); i++){
+				if (this.Jogadores.get(i).CartaRodada == cartaVencedora){
+					System.out.println("Jogador vencedor da rodada:" + this.Jogadores.get(i).Nome);
+					for(Carta elemento: this.CartasRodada){
+						this.Jogadores.get(i).Cartas.add(elemento);
+					}
+					this.CartasRodada.clear();
+				}
+			}
+		}
+	}
+
+	public void VerficarJogadoresSemCartas(){
+		for (int i = 0; i <this.Jogadores.size(); i++){
+			
+			if (this.Jogadores.get(i).Cartas.size()==0)
+				this.Jogadores.remove(i);
+				
+		}
+	}
+	
+	public boolean verificarFimdoJogo(){
+		if (this.Jogadores.size() == 1){
+			System.out.println("Jogador vencedor da partida:" + this.Jogadores.get(0).Nome);
+			return true;
+		}
+		else 
+			return false;
+		
+	}
+}
