@@ -1,0 +1,36 @@
+import java.util.Scanner;
+
+
+public class InteracaoUser {
+	Scanner sc = new Scanner(System.in);
+	
+	public int solicitaAtributoUser (){
+		System.out.println("Informe o numero do atributo escolhido: ");
+		System.out.println("1 - Ano");
+		System.out.println("2 - IMDB");
+		System.out.println("3 - Bilheteria");
+		System.out.println("4 - Dura��o");
+		System.out.println("5 - Numero de pr�mios.");
+		System.out.println("");
+		return this.sc.nextInt();
+	}
+        
+        
+   public final static void clearConsole(){
+
+        try{
+            final String os = System.getProperty("os.name");
+
+            if (os.contains("Windows")){
+                Runtime.getRuntime().exec("cls");
+
+            }else{
+                Runtime.getRuntime().exec("clear");
+            }
+        }
+        catch (final Exception e){
+        //  Tratar Exceptions
+        }
+    }
+	
+}
